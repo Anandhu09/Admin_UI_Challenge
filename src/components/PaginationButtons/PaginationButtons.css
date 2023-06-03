@@ -1,0 +1,51 @@
+.PaginationButtons{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* margin: 15px 5% 15px 5%;
+    width: 50%; */
+}
+.btn{
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    
+}
+.page-buttons{
+    display: flex;
+    border-radius: 5px;
+    margin: 3px;
+    font-size: 20.7px;
+    padding: 10 px;
+
+}
+
+.material-symbols-outlined {
+    margin: 3px;
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+}
+.navigation-button{
+    margin: 2px;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+.numbers{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media (max-width: 660px){
+    .PaginationButtons{
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+}

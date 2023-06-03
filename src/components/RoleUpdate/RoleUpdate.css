@@ -1,0 +1,80 @@
+
+.Updater{
+    background-color: #fff;
+    width: 100%;
+    position: absolute;
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column;
+    border-radius: 250px;
+    left: 30vw;
+    top: 30vh;
+    height: 375px;
+    width: 375px;
+
+    
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        
+    
+    
+}
+.UpdateBtn{
+    margin: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    border:double
+}
+.Close{
+    margin: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    border:double;
+    color:red;
+}
+
+.input-field{
+width: 100%;
+padding: 5px;
+border-radius: 3px;
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+/* border:#605a5a44; */
+}
+.box_label{
+    align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin: 4px 0 6px 1px;
+}
+.headline{
+    margin: 15px;
+    padding-top:20px;
+        font-size: 19px;
+        font-weight: bold;
+        text-decoration: underline;
+        font-family: monospace;
+}
+
+/* CSS */
+
+
+@media (max-width: 768px) {
+    .Updater {
+        width: 50%;
+    }
+}
+
+@media (max-width: 498px) {
+    .Updater {
+        width: 60%;
+    }
+    .headline{
+        margin-left: 50px;
+    }
+}
+
+/* ... continue with more media queries as needed */
