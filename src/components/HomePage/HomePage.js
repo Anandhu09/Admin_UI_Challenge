@@ -12,7 +12,7 @@ function HomePage() {
   let content = "ADMIN UI";
   const [userList, setUserList] = useState([]);
   const [search, setSearch] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const [blurEffect, setBlurEffect] = useState(false);
   const [dataInput, setDataInput] = useState([]);
 
@@ -67,7 +67,6 @@ function HomePage() {
       </div>
       {blurEffect && (
         <RoleUpdate
-          dataInput={dataInput}
           setDataInput={setDataInput}
           blurEffect={blurEffect}
           setBlurEffect={setBlurEffect}

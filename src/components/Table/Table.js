@@ -19,6 +19,7 @@ function Table({
 }) {
   const [displayArray, setDisplayArray] = useState([]);
   const [selectRow, setSelectRow] = useState([]);
+  const [selectSingleRow, setSelectSingleRow] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [Id, setId] = useState("");
   const listsPerPage = 10;
@@ -29,29 +30,37 @@ function Table({
   //handling display list using componentDidUpdate
   useEffect(() => {
     setTotalPages(Math.ceil(userList.length / listsPerPage));
-    setDisplayArray(userList.slice(firstItemIndex, lastItemIndex));
-  }, [userList, currentPage]);
+    setDisplayArray(userList.slice(firstItemIndex, firstItemIndex + 10));
+  }, [userList]);
+
+  //handling displaying userList using componentDidUpdate
+  useEffect(() => {
+    setCurrentPage(currentPage);
+    setDisplayArray(userList.slice(firstItemIndex, firstItemIndex + 10));
+  }, [currentPage]);
+
+  //handling delete single user using componentDidUpdate
+  useEffect(() => {
+    deleteUser();
+  }, [selectSingleRow]);
+
+  const deleteUser = () => {
+    setUserList(userList.filter((ele) => !selectSingleRow.includes(ele.id)));
+    console.log(userList);
+  };
 
   //handling search using componentDidUpdate
   useEffect(() => {
-    const paginatedData = userList.slice(
-      (currentPage - 1) * listsPerPage,
-      userList.length - 1
-    );
-    const filteredData = paginatedData.filter((ele) => {
+    setCurrentPage(1);
+    const filteredData = userList.filter((ele) => {
       const objectValues = Object.values(ele);
       return objectValues.some((value) =>
         String(value).toLowerCase().includes(search.toLowerCase())
       );
     });
-
-    if (filteredData) {
-      setDisplayArray(filteredData.slice(firstItemIndex, lastItemIndex));
-    }
     setTotalPages(Math.ceil(filteredData.length / listsPerPage));
-
-    if (!search) {
-      setDisplayArray(userList.slice(firstItemIndex, lastItemIndex));
+    if (filteredData) {
+      setDisplayArray(filteredData.slice(0, 10));
     }
   }, [search]);
 
@@ -60,10 +69,12 @@ function Table({
     let confirm = window.confirm(
       `Do you want to delete the user ${obj.name} from the list ?`
     );
-    if (confirm)
-      setDisplayArray((prevData) =>
-        prevData.filter((ele) => ele.id !== obj.id)
-      );
+
+    if (confirm) {
+      setSelectSingleRow((prevData) => [...prevData, obj.id]);
+    }
+    // setDisplayArray((prevData) => prevData.filter((ele) => ele.id !== obj.id));
+    setSelectRow((prevData) => prevData.filter((ele) => ele != obj.id));
   };
 
   //handling select all users
